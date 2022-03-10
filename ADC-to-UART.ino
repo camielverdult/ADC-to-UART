@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#define F_CPU 16000000ul        // Fosc
-#define BAUD 9600ul           // BAUD rate
-#define UBRR (F_CPU / (16 * BAUD) - 1)  // sample time, the signal gets sampled every UBRR ticks
+#define F_CPU 16000000ul
+#define BAUD 9600ul
+#define UBRR (F_CPU / (16 * BAUD) - 1)
 
 void transmit(char* message, int n) {
 
@@ -63,11 +63,11 @@ int main(void)
     // wait for the ADC to finish conversion
     while(!(ADCSRA & (1 << ADIF))) {};
 
-    char voltage_string[] = "Voltage: ";
-    int voltage_string_n = sizeof(voltage_string) / sizeof(voltage_string[0]);
-    
-    // send a reading to the listening device
-    transmit(voltage_string, voltage_string_n);
+//    char voltage_string[] = "Voltage: ";
+//    int voltage_string_n = sizeof(voltage_string) / sizeof(voltage_string[0]);
+//    
+//    // send a reading to the listening device
+//    transmit(voltage_string, voltage_string_n);
     
     // some overcomplicated way of converting a float to a char[]
     char voltage[5];
@@ -77,7 +77,7 @@ int main(void)
 
     transmit(voltage, voltage_n);
 
-    char unit[] = "V\n";
+    char unit[] = "\n";
     int unit_n = sizeof(unit) / sizeof(unit[0]);
 
     transmit(unit, unit_n);
