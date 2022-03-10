@@ -26,8 +26,8 @@ void Init_USART( void ) {
   // Enable TX only
   UCSR0B = (1 << TXEN0);
   
-  // Set 8-bit per character
-  UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+  // Set frame format: 8data, 2stop bit
+  UCSR0C = (1< < USBS0) | (3 << UCSZ00);
 }
 
 void Init_ADC( void ) {
